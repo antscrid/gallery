@@ -2,12 +2,13 @@
 <html>
 	<head>
         <?php
-        define ("Title", "Галерея", false);
-        // Значення <title> додане в якості константи
+        include_once 'php/script.php';
         ?>
         <title><?php
-            echo Title;
-            // Значення <title> виведене, як константа
+            if ( (isset($Img_link)) && (defined('Title')) ) {
+                echo 'Фото '.Title;
+            }
+            // Перевірка оголошення константи і змінної, виведення константи в  <title>
             ?>
         </title>
     </head>
@@ -17,10 +18,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
         <div class="gallery">
-            <?php
-            $Img_link='https://fakeimg.pl/250x150/'
-            // Посилання на зображення додане, як змінна
-            ?>
             <a data-fancybox="gallery" href= '<?php echo $Img_link?>'>
                 <img src="<?php echo $Img_link?>"></a>
             <!--Посилання виведене, як змінна-->
