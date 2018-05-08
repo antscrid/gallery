@@ -1,0 +1,29 @@
+/*Pageview for desktops*/
+    .gallery {
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+        text-align: center;
+        }
+
+    img {
+        width:250px;
+        height:150px;
+        padding: 5px;
+            }
+/*Pageview for tablets*/
+@media (max-width: 991px) {
+        .gallery {
+                width: 80%;
+                margin-left: 10%;
+                margin-right: 10%;
+                text-align: center;
+        }}
+/*Pageview for smartphones*/
+@media (max-width: 767px) {
+        .gallery {
+                width: 90%;
+                margin-left: 5%;
+                margin-right: 5%;
+                text-align: center;
+        }}
