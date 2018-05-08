@@ -16,7 +16,7 @@ $Img9_link='https://picsum.photos/250/150?image=90';
 $images = array(
     array(
         'name' => 'forest',
-        'url' => 'https://picsum.photos/250/150?image=10',
+        'url' => 'https://picsum.photos/500/400?image=10',
         'width' => '250',
         'heigth' => '150',
     ),
@@ -69,4 +69,3 @@ $images = array(
         'heigth' => '150',
     ),
 );
-
