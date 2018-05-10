@@ -1,16 +1,26 @@
+img {
+    width:250px;
+    height:150px;
+}
 /*Pageview for desktops*/
+@media (min-width: 992px) {
     .gallery {
         width: 60%;
         margin-left: 20%;
         margin-right: 20%;
-        text-align: center;
-        }
-
-    img {
-        width:250px;
-        height:150px;
-        padding: 5px;
-            }
+        display:-ms-flexbox;
+        display:flex;
+        -ms-flex-wrap:wrap;
+        flex-wrap:wrap;
+}
+    .text-box {
+        text-align: left;
+    }
+}
+    .box {
+        padding:3px;
+    }
+}
 /*Pageview for tablets*/
 @media (max-width: 991px) {
         .gallery {
