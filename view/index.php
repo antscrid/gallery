@@ -1,7 +1,9 @@
 <?php
 //loaded file with variables
 require_once('src/app.php');
+require_once('src/auth.php');
 $collection = getCollection();
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,9 +18,11 @@ $collection = getCollection();
 <body>
 <div class="album py-5 bg-light">
     <div class="container">
+        <?php login_function()?>
         <h1 class="h1 text-center"><?php echo PAGE_TITLE ?></h1>
         <a class="btn btn-dark btn-lg active m-md-2" href="/form">Upload New Image</a>
         <div class="row">
+
             <?php if (!empty($images = formatImages($collection))): ?>
                 <?php foreach ($images as $image): ?>
                     <div class="col-md-4">
