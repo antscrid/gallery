@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Form</title>
+    <title>Login</title>
     <link rel="stylesheet" href="pub/css/bootstrap.css">
-    <link rel="stylesheet" href="pub/css/main.css">
+    <link rel="stylesheet" href="pub/css/bootstrap.min.css">
 </head>
 <body>
 <div class="album py-5 bg-light">
     <div class="container">
-        <h1 class="h1 text-center">Upload New Image</h1>
+        <h1 class="h1 text-center">Create an account</h1>
         <?php if ($errors): ?>
             <div class="alert alert-danger">
                 <strong>Error:&nbsp;</strong><?php echo $errors ?>
             </div>
         <?php endif; ?>
-        <form action="/process" method="post" enctype="multipart/form-data">
+
+        <form action="/processRegister" method="post">
             <div class="form-group">
-                <label for="authorname">Author Name</label>
-                <input type="text" class="form-control" id="authorname" name="authorname" value="<?php echo App::get('session')->getFieldValue('authorname') ?>">
+                <label for="login">Enter Login</label>
+                <input type="text" class="form-control" id="login" name="login" value="<?php echo App::get('session')->getFieldValue('login') ?>">
             </div>
             <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3"><?php echo App::get('session')->getFieldValue('description') ?></textarea>
+                <label for="pass">Enter Password</label>
+                <input type="password" class="form-control" id="pass" name="pass">
             </div>
             <div class="form-group">
-                <label for="image">Select Image</label>
-                <input type="file" class="form-control-file" id="image" name="image">
+                <label for="repass">Re-enter password</label>
+                <input type="password" class="form-control" id="repass" name="repass">
             </div>
             <div class="form-group row">
                 <div class="col-sm-10">
