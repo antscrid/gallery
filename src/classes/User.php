@@ -29,6 +29,7 @@ class User
         $_SESSION['errors'][] = 'Something went wrong';
         return false;
     }
+
     public function logout()
     {
         App::get('session')->clear();

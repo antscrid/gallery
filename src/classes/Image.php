@@ -113,32 +113,6 @@ class Image
     {
         return getimagesize($imagePath);
     }
-    //showing the images array
-    public function getCollection()
-    {
-        if (isset($_GET['p'])) {
-            $offset = $_GET['p'] - 1;
-        } else {
-            $offset = 0;
-        }
-        //$offset = isset($_GET['p']) ? $_GET['p'] - 1 : 0;
-        $offset = $offset * Pagination::IMAGE_COUNT;
-        $sql = "SELECT images.id, image_path, thumbnail_path, author_name, description, created_at, login FROM images
-LEFT JOIN users on images.user_id = users.id
-LIMIT " . $offset . ", " . Pagination::IMAGE_COUNT;
-        $result = $this->request($sql);
-        $images = [];
-        if ($result->rowCount() > 0) {
-            foreach ($result->fetchAll() as $value) {
-                $images[] = $value;
-            }
-        } else {
-            // set empty array
-            $images = [];
-        }
-        $this->sort($images);
-        return $images;
-    }
     //delete images
     public function delete($id)
     {
@@ -170,12 +144,40 @@ VALUES(NULL, :image_path, :thumbnail_path, :description, :author_name, CURRENT_T
                 ':user_id' => $_SESSION['auth'],
             ];
             $this->request($sql, $params);
-            App::get('session')->setMessage('You have uploaded new image');
+            App::get('session')->setMessage('New image was uploaded');
             unset($_SESSION['fields']);
             return true;
         }
         App::get('session')->setError('Unable to upload image');
         return false;
+    }
+    public function getCollection()
+    {
+        if (isset($_GET['p'])) {
+            $offset = $_GET['p'] - 1;
+        } else {
+            $offset = 0;
+        }
+        $offset = $offset * Pagination::IMAGE_COUNT;
+        $sql = "SELECT images.id, image_path, thumbnail_path, author_name, description, created_at, login FROM images
+        LEFT JOIN users on images.user_id = users.id WHERE images.user_id = :user_id;
+        LIMIT " . $offset . ", " . Pagination::IMAGE_COUNT;
+        $params = [
+            ':user_id' => $_SESSION['auth'],
+        ];
+
+        $result = $this->request($sql, $params);
+        $images = [];
+        if ($result->rowCount() > 0) {
+            foreach ($result->fetchAll() as $value) {
+                $images[] = $value;
+            }
+        } else {
+            // set empty array
+            $images = [];
+        }
+        $this->sort($images);
+        return $images;
     }
     public function upload($file)
     {
