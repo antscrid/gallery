@@ -6,36 +6,45 @@
     <link rel="stylesheet" href="pub/css/bootstrap.min.css">
     <link rel="stylesheet" href="pub/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="pub/media/ico.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+        <
+        script
+        src = "//code.jquery.com/jquery-3.3.1.min.js" ></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 </head>
 <body>
 <div>
+
     <div class="container">
         <ul class="nav justify-content-end">
-            <?php if (App::get('session')->isLoggedIn()):?>
+            <?php
+            Echo $_POST['login'];
+            if (App::get('session')->isLoggedIn()): ?>
 
                 <li class="nav-item">
-                        <a href="/logout" class="btn">
+                    <a href="/logout" class="btn">
                         <span class="glyphicon glyphicon-log-out"></span> Log out</a>
                 </li>
             <?php else: ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/login">Log In</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/register">Registration</a>
+                    <a class="nav-link" href="/register">Sign Up</a>
                 </li>
             <?php endif; ?>
         </ul>
-        <h1 class="h1 text-center"><?php echo $title ?></h1>
-        <div class="upload_button">
-        <?php if (App::get('session')->isLoggedIn()) : ?>
-            <a class="btn btn-primary btn-lg active m-md-2" href="/form">Upload New Image</a>
-        <?php endif; ?>
+        <div class="jumbotron">
+            <h1>Your image gallery</h1>
+            <p>Upload and store the photos here!</p>
+        </div>
+        <div>
+            <?php if (App::get('session')->isLoggedIn()) : ?>
+                <a class="btn btn-primary btn-lg active m-md-2" href="/form">Upload New Image</a>
+            <?php endif; ?>
         </div>
         <?php if ($messages = App::get('session')->messages()): ?>
             <div class="alert alert-success">
@@ -43,12 +52,13 @@
             </div>
         <?php endif; ?>
         <div class="row">
-            <?php if (!empty($images = $image->getCollection())): ?>
+            <?php if (App::get('session')->isLoggedIn() && !empty($images = $image->getCollection())): ?>
                 <?php foreach ($images as $image): ?>
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadowcard mb-4 box-shadow">
-                            <a class="delete_button" href="#" onclick="if (confirm('Are you sure?')) {location.href = '/removeImage?id=<?php echo $image['id'] ?>';}">
-                                <img src="pub/close.png"
+                            <a class="delete_button" href="#"
+                               onclick="if (confirm('Are you sure?')) {location.href = '/removeImage?id=<?php echo $image['id'] ?>';}">
+                                <img src="pub/media/close.png"
                             </a>
                             <a data-fancybox="gallery"
                                href="<?php echo $image['image_path'] ?>">
@@ -69,8 +79,10 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <p>
-                <div class="alert alert-danger col-12">
-                    <strong>Upload</strong> your images first to see them here!
+                <div class="container">
+                    <div class="alert alert-danger">
+                        <strong>Upload</strong> your images first to see them here!
+                    </div>
                 </div>
             <?php endif; ?>
         </div>

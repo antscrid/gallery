@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Log In</title>
     <link rel="stylesheet" href="pub/css/bootstrap.css">
-    <link rel="stylesheet" href="pub/css/main.css">
+    <link rel="stylesheet" href="pub/css/bootstrap.min.css">
 </head>
 <body>
-<div class="album py-5 bg-light">
+<div>
     <div class="container">
-        <h1 class="h1 text-center">Login as user</h1>
+        <div class="jumbotron">
+            <h1>Log In to the gallery</h1>
+            <p>Enter your login and password to upload and delete the images</p>
+        </div>
+        <div>
+            <a class="btn btn-dark" href="/">Go home</a><p>
+        </div>
         <?php if ($errors): ?>
             <div class="alert alert-danger">
                 <strong>Error:&nbsp;</strong><?php echo $errors ?>
@@ -16,12 +22,12 @@
         <?php endif; ?>
         <form action="/processLogin" method="post">
             <div class="form-group">
-                <label for="login">Login</label>
-                <input type="text" class="form-control" id="login" name="login" value="<?php echo App::get('session')->getFieldValue('login') ?>">
+                <label for="login">Enter Login</label>
+                <input type="text" class="form-control" id="login" name="login" placeholder="Enter login here" value="<?php echo App::get('session')->getFieldValue('login') ?>">
             </div>
             <div class="form-group">
-                <label for="pass">Password</label>
-                <input type="password" class="form-control" id="pass" name="pass">
+                <label for="pass">Enter Password</label>
+                <input type="password" class="form-control" id="pass" name="pass" placeholder="Enter password here">
             </div>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="remember" name="remember">
@@ -29,8 +35,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <a class="btn btn-light" href="/">Back to Gallery</a>
-                    <button type="submit" class="btn btn-dark">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </form>

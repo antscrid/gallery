@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo $title ?></title>
+    <title>Page not found</title>
     <link rel="stylesheet" href="pub/css/bootstrap.css">
+    <link rel="stylesheet" href="pub/css/bootstrap.min.css">
 </head>
 <body>
-<div class="album py-5 bg-light">
+<div>
     <div class="container">
-        <h1>Page Not Found</h1>
+        <div class="jumbotron">
+            <h1>Page not found</h1>
+            <p>Please, reload the page or wait for the problems to be fixed</p>
+        </div>
+        <div>
+            <a class="btn btn-dark" href="/">Go home</a><p>
+        </div>
     </div>
-</div>
 </body>
 </html>

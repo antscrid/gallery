@@ -6,9 +6,15 @@
     <link rel="stylesheet" href="pub/css/main.css">
 </head>
 <body>
-<div class="album py-5 bg-light">
+<div>
     <div class="container">
-        <h1 class="h1 text-center">Upload New Image</h1>
+        <div class="jumbotron">
+            <h1>Upload the image</h1>
+            <p>Choose the image and add the information about it</p>
+        </div>
+        <div>
+            <a class="btn btn-dark" href="/">Go home</a><p>
+        </div>
         <?php if ($errors): ?>
             <div class="alert alert-danger">
                 <strong>Error:&nbsp;</strong><?php echo $errors ?>
@@ -17,11 +23,11 @@
         <form action="/process" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="authorname">Author Name</label>
-                <input type="text" class="form-control" id="authorname" name="authorname" value="<?php echo App::get('session')->getFieldValue('authorname') ?>">
+                <input type="text" class="form-control" id="authorname" name="authorname">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3"><?php echo App::get('session')->getFieldValue('description') ?></textarea>
+                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <label for="image">Select Image</label>
@@ -29,12 +35,12 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <a class="btn btn-light" href="/">Back to Gallery</a>
-                    <button type="submit" class="btn btn-dark">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
 </body>
 </html>
